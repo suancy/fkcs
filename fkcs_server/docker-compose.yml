@@ -1,0 +1,28 @@
+version: '3'
+  v2ray:
+    container_name: v2ray
+    image: v2ray/official
+    # The ports that you want to open
+    ports:
+      - '443:443'
+
+    ################################################
+    # Mount your own config files to the container #
+    # You must make sure this is correct           #
+    ################################################
+    volumes:
+      - ./myconf:/etc/myconf
+
+
+    # Restart on every boot
+    restart: always
+    commands:
+      - -config
+      - /etc/myconf/config.json
+
+  # Update V2Ray when now cores are released
+  watchtower:
+    container_name: watchtowerForV2Ray
+    image: v2tec/watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock

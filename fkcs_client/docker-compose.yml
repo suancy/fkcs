@@ -1,0 +1,35 @@
+# version: '2' also works
+version: '3'
+services:
+  fkcs:
+    # Name your container
+    container_name: fkcs
+
+    ######################################
+    # Your image of the client container #
+    # Change it to your own!             #
+    ######################################
+    image: your_image:and_tag
+    ports:
+      - 1095:1095/tcp
+      - 1095:1095/udp
+      - '9999:9999'
+    # Once set the restart policy to 'always', the docker daemon will
+    # automatically start the container after every boot (if the container
+    # has not been stopped by the user).
+    restart: always
+
+  # This container can monitor other container when a newer image for the coressponding container has been pushed:
+  # https://github.com/v2tec/watchtower
+  watchtower:
+    container_name: watchtowerForFkcs
+    image: v2tec/watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command:
+      - --debug
+      - --cleanup
+      # The name of your container
+      - fkcs
+    # Same reason as above
+    restart: always
