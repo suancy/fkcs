@@ -17,6 +17,7 @@ version: '3'
     # Restart on every boot
     restart: always
     commands:
+      - /usr/bin/v2ray/v2ray
       - -config
       - /etc/myconf/config.json
 
