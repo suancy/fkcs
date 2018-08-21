@@ -151,7 +151,7 @@ You can get started with docker from the [official docs](https://docs.docker.com
 After it automatically setups itself, you're finally able to access the Internet. The default `socks5` proxy is on port `1095` and `http` is on `9999`.
 
 To stop or restart it, run `docker-compose stop` or `docker-compose restart` **under the directory you've created just now** (`fkcs` in my case).
-## Future perspectives
+## Prospects
 - [ ] Deploy a standalone client side app, with the auto-update ability (And may prompt for an auto-update). Maybe a new repo for that.
 
 ## For my precious supporters
